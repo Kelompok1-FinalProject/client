@@ -1,0 +1,896 @@
+{
+	"info": {
+		"_postman_id": "9fcf4161-b9c0-42da-8d54-ba4f38096f4b",
+		"name": "FINAL PROJECT CAFE SERUMPUN RASA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30228184"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Fahri Wijaya\",\r\n  \"role\": \"Kasir\",\r\n  \"email\": \"fahriwijaya@gmail.com\",\r\n  \"password\": \"12345678\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/register",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"serumpunrasa6483@gmail.com\",\r\n  \"password\": \"serumpunrasa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/login",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Test Server",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001"
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Menu",
+			"item": [
+				{
+					"name": "Create Menu",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Nasi Goreng\",\r\n  \"description\": \"Nasi Goreng Gila\",\r\n  \"gambar\": \"link\",\r\n  \"harga\": 13000,\r\n  \"kategori\": \"makanan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu List By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu List By Kategori",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu/:kategori/menu",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu",
+								":kategori",
+								"menu"
+							],
+							"variable": [
+								{
+									"key": "kategori",
+									"value": "makanan"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Nasi Goreng Gila\",\r\n  \"description\": \"Nasi Goreng Sosis\",\r\n  \"gambar\": \"link Nasi Goreng Gila\",\r\n  \"harga\": 15000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu Update Status",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"status\": \"private\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Menu By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/menu/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"menu",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "9"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "Create Customer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Fahri Wijaya\",\r\n  \"noMeja\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer Waiting List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer/waitinglist",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer",
+								"waitinglist"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Customer By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkZhaHJpIFdpamF5YSIsIm5vTWVqYSI6MTcsImlhdCI6MTcwMjQ2NjA5OX0.l79uKj9PMVCZTq0C-jG_CtWB_e0DzCvO5OX4QIzq3SE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer/buyer",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer",
+								"buyer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update payment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkZhaHJpIFdpamF5YSIsIm5vTWVqYSI6MTcsImlhdCI6MTcwMjQ2NjA5OX0.l79uKj9PMVCZTq0C-jG_CtWB_e0DzCvO5OX4QIzq3SE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"payment\": \"Qris\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer/payment",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer",
+								"payment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status Bayar",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ5NzkxOX0.CFnYdCFNzbOaVuITT6KDjFt2oGXC85f-ZoKtX2SzFHE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"statusBayar\": \"Done\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer/:id/bayar",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer",
+								":id",
+								"bayar"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Status Pesanan",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"statusPesanan\": \"Done\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/customer/:id/pesanan",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"customer",
+								":id",
+								"pesanan"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaksi",
+			"item": [
+				{
+					"name": "Add Transaksi",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkZhaHJpIFdpamF5YSIsIm5vTWVqYSI6MTcsImlhdCI6MTcwMjQ2NjA5OX0.l79uKj9PMVCZTq0C-jG_CtWB_e0DzCvO5OX4QIzq3SE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"menuId\": 2,\r\n    \"jumlahOrder\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/transaksi",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"transaksi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaksi List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/transaksi",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"transaksi"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaksi By customerId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkZhaHJpIFdpamF5YSIsIm5vTWVqYSI6MTcsImlhdCI6MTcwMjQ2NjA5OX0.l79uKj9PMVCZTq0C-jG_CtWB_e0DzCvO5OX4QIzq3SE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/transaksi/buyer",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"transaksi",
+								"buyer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaksi Update Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkZhaHJpIFdpamF5YSIsIm5vTWVqYSI6MTcsImlhdCI6MTcwMjQ2NjA5OX0.l79uKj9PMVCZTq0C-jG_CtWB_e0DzCvO5OX4QIzq3SE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"menuId\": 4,\r\n    \"jumlahOrder\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://103.127.97.117:4001/transaksi/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"transaksi",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Transaksi By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6IkZhaHJpIFdpamF5YSIsIm5vTWVqYSI6MTcsImlhdCI6MTcwMjQ2NjA5OX0.l79uKj9PMVCZTq0C-jG_CtWB_e0DzCvO5OX4QIzq3SE",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/transaksi/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"transaksi",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Laporan",
+			"item": [
+				{
+					"name": "Get Laporan Customer",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/laporan",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"laporan"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Laporan By customerId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwicm9sZSI6Ik93bmVyIiwiZW1haWwiOiJzZXJ1bXB1bnJhc2E2NDgzQGdtYWlsLmNvbSIsImlhdCI6MTcwMjQ2MjAwOH0.6HyMPblRFS9wCUrPU7CV5ax6p2XMW7SqAdB9mlG7__w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://103.127.97.117:4001/laporan/:id",
+							"protocol": "http",
+							"host": [
+								"103",
+								"127",
+								"97",
+								"117"
+							],
+							"port": "4001",
+							"path": [
+								"laporan",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
