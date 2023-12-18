@@ -11,17 +11,27 @@ function MenuRow({
   gambar,
   harga,
   onDelete,
+  onPrivatePublic,
   role,
+  status,
 }) {
   return (
     <tr>
       <td>
-        <img src={gambar} alt="My Image" />
+        <img src={gambar} height="100" width="100" alt={gambar} />
       </td>
       <td>{name}</td>
       <td>Rp. {harga}</td>
       <td>
-        <button>a</button>
+        <button
+          onClick={() => {
+            const newStatus = status === "public" ? "private" : "public";
+            onPrivatePublic(id, newStatus);
+          }}
+        >
+          {status}
+        </button>
+        {role === "Owner" ? <button>Edit</button> : <></>}
         {role === "Owner" ? (
           <DeleteButton index={index} id={id} onDelete={onDelete} />
         ) : (

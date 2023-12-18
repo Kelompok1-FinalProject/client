@@ -15,13 +15,20 @@ function Register() {
     event.preventDefault();
     // TODO HANDLE LOGIN HERE
     const response = await register({ name, role, email, password });
-    if (response) {
+    console.log(response);
+    if (!response.error) {
       Swal.fire({
         icon: "success",
         title: "Account Berhasil dibuat",
-        text: `Account dengan nama ${name} berhasil dibuat`,
+        text: `Account dengan nama ${name} berhasil dibuat - <br></br> ${response.message}`,
       });
       navigate("/login");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Account Gagal dibuat",
+        text: `Account dengan nama ${name} gagal dibuat dengan error ${response.message}`,
+      });
     }
   }
   return (

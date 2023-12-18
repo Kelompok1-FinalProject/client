@@ -53,8 +53,8 @@ function AddMenu() {
             required
           >
             <option value="">-- Pilih Kategori --</option>
-            <option value="Kasir">Makanan</option>
-            <option value="Pelayan">Minuman</option>
+            <option value="makanan">Makanan</option>
+            <option value="minuman">Minuman</option>
           </Form.Select>
         </Form.Group>
         <Form.Group className="col-md-12 text-start">
