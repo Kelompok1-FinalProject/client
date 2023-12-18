@@ -64,11 +64,15 @@ async function register({ name, role, email, password }) {
   const responseJson = await response.json();
 
   if (response.status >= 400) {
-    alert(responseJson.msg);
-    return { error: true, code: response.status };
+    alert(responseJson.message);
+    return {
+      error: true,
+      code: response.status,
+      message: responseJson.message,
+    };
   }
 
-  return { error: false, code: response.status };
+  return { error: false, code: response.status, message: responseJson.message };
 }
 
 async function testServer() {

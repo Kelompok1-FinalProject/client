@@ -1,6 +1,6 @@
 import MenuRow from "./MenuRow";
 function MenuList(props) {
-  const { menus, onDelete, role } = props;
+  const { menus, onDelete, role, onPrivatePublic } = props;
 
   return (
     <>
@@ -16,6 +16,7 @@ function MenuList(props) {
           kategori={menu.kategori}
           status={menu.status}
           onDelete={onDelete}
+          onPrivatePublic={onPrivatePublic}
           role={role}
         >
           {menu.description && typeof menu.description === "object"

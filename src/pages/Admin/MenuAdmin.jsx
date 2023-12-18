@@ -6,6 +6,7 @@ import {
   getMenu,
   getMenuKategori,
   getRole,
+  updateStatusMenu,
 } from "../../utils/server";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
@@ -36,6 +37,25 @@ function MenuAdmin() {
       }
     } else {
       console.error("Error deleting note:", deleteResult.code);
+    }
+  };
+
+  const onPrivatePublicHandler = async (id, status) => {
+    const privatePublicResult = await updateStatusMenu(id, status);
+
+    if (!privatePublicResult.error) {
+      const getMenusResult = await getMenuKategori(selectedCategory);
+
+      if (!getMenusResult.error) {
+        setMenus(getMenusResult.data);
+      } else {
+        console.error(
+          "Error fetching menus after deletion:",
+          getMenusResult.code
+        );
+      }
+    } else {
+      console.error("Error deleting note:", privatePublicResult.code);
     }
   };
 
@@ -106,6 +126,7 @@ function MenuAdmin() {
             <MenuList
               menus={menus}
               onDelete={onDeleteHandler}
+              onPrivatePublic={onPrivatePublicHandler}
               role={userRole}
             />
           </tbody>
