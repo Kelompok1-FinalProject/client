@@ -26,7 +26,9 @@ function Login() {
 
   return (
     <div className="p-2">
-      <strong className="fs-1 text-center text-light">Sign In</strong>
+      <div className="w-75 m-auto">
+        <img src="https://i.imgur.com/UGQiraA.png" alt="Logo" className=" w-25 p-3" />
+      </div>
       <Form
         className="row px-5 g-3 m-5 text-light col-md-4 mx-auto"
         onSubmit={(event) => {
@@ -56,7 +58,7 @@ function Login() {
         <Form.Group>
           {email && password ? (
             <Button
-              className="col-3 mb-1 btn-outline-primary"
+              className="col-3 mb-1 btn-outline-success rounded-pill p-3 fw-bold"
               variant="light"
               type="submit"
             >
@@ -64,7 +66,7 @@ function Login() {
             </Button>
           ) : (
             <Button
-              className="col-3 mb-1 btn-outline-danger"
+              className="col-3 mb-1 btn-outline-danger rounded-pill p-3 fw-bold"
               variant="light"
               type="submit"
               disabled
@@ -78,7 +80,14 @@ function Login() {
           <div className="text-start">
             if you don't have account,{" "}
             <Link to="/register" className="text">
-              <strong>Register</strong>
+            <Button
+              className="col-3 mb-1 btn-outline-info rounded-pill p-3 fw-bold m-auto text-dark"
+              variant="light"
+              type="submit"
+            >
+              Register
+            </Button>
+              
             </Link>
           </div>
         </Form>

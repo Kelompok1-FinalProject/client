@@ -27,8 +27,11 @@ function Register() {
   return (
     <div className="p-2">
       <strong className="fs-1 text-center text-light">Sign Up</strong>
+      <div className="w-50 m-auto">
+        <img src="https://i.imgur.com/UGQiraA.png" alt="Logo" className=" w-25 p-3" />
+      </div>
       <Form
-        className="row px-5 g-3 m-5 text-light col-md-4 mx-auto"
+        className="row px-5 g-3 m-5 text-light col-md-4 mx-auto card bg-body-tertiary text-dark py-2"
         onSubmit={(event) => {
           onSubmitHandler(event);
         }}
@@ -78,7 +81,7 @@ function Register() {
         <Form.Group>
           {name && role && email && password ? (
             <Button
-              className="col-3 mb-1 btn-outline-primary"
+              className="col-3 mb-1 btn-outline-primary rounded-pill p-3 fw-bold m-auto"
               variant="light"
               type="submit"
             >
@@ -86,7 +89,7 @@ function Register() {
             </Button>
           ) : (
             <Button
-              className="col-3 mb-1 btn-outline-danger"
+              className="col-3 mb-1 btn-outline-danger rounded-pill p-3 fw-bold"
               variant="light"
               type="submit"
               disabled

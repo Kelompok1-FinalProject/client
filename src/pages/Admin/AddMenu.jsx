@@ -22,14 +22,21 @@ function AddMenu() {
   }
 
   return (
-    <div className="p-2">
-      <strong className="fs-1 text-center text-light">Form Add Note</strong>
+    <div className="p-5 mx-5 m-auto">
+      <strong className="fs-1 text-center text-light">Form Add Menu</strong>
+      <div className="">
+      <img src="https://i.imgur.com/bcFrk02.jpg" alt="Image Post" className="img-thumbnail w-25 mt-5"/>
+      </div>
+
+      
+      <div className="m-5 w-50 mx-auto">
       <Form
-        className="row g-3 m-5 text-light"
+        className="row g-3 m-5 text-light mx-5"
         onSubmit={(event) => {
           onSubmitHandler(event);
         }}
       >
+        <div className="d-flex">
         <Form.Group className="col-md-12 text-start">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -42,9 +49,10 @@ function AddMenu() {
             required
           />
         </Form.Group>
-        <Form.Group className="row-md-6 text-start">
-          <Form.Label>Role</Form.Label>
-          <Form.Select
+        <div className="d-flex justify-content-end px-5">
+        <Form.Group className="row-md-6 text-start px-5 w-100">
+          <Form.Label className="">Kategori</Form.Label>
+          <Form.Select className=""
             onChange={(event) => {
               const value = event.target.value;
               setMenu({ ...menu, kategori: value });
@@ -57,6 +65,8 @@ function AddMenu() {
             <option value="Pelayan">Minuman</option>
           </Form.Select>
         </Form.Group>
+        </div>
+        </div>
         <Form.Group className="col-md-12 text-start">
           <Form.Label>Harga</Form.Label>
           <Form.Control
@@ -95,6 +105,7 @@ function AddMenu() {
             required
           />
         </Form.Group>
+        
         {menu.name &&
         menu.kategori &&
         menu.harga &&
@@ -118,6 +129,7 @@ function AddMenu() {
           </Button>
         )}
       </Form>
+      </div>
     </div>
   );
 }

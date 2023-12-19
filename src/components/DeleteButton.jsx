@@ -6,8 +6,8 @@ import { Button } from "react-bootstrap";
 function DeleteButton({ index, id, onDelete }) {
   return (
     <Button
-      variant="dark"
-      className="btn-outline-danger fs-6"
+      variant="white"
+      className="btn-danger fs-4 rounded-pill py-2"
       onClick={() => onDelete(id)}
     >
       {/* <img src={hapus} alt="Profile" width="25" height="25" /> */}
