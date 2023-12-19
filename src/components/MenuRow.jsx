@@ -14,16 +14,17 @@ function MenuRow({
   role,
 }) {
   return (
-    <tr>
-      <td>
-        <img src={gambar} alt="My Image" />
+    <tr className="align-middle">
+      <td className="w-25">
+        <img src={gambar} alt="My Image" className="img-thumbnail w-25" />
       </td>
       <td>{name}</td>
       <td>Rp. {harga}</td>
-      <td>
-        <button>a</button>
+      <td className="justify-content-evenly">
+        <button className="btn-warning rounded-pill mx-3">Publikasi</button>
+        <button className="btn-info rounded-pill mx-3">Edit</button>
         {role === "Owner" ? (
-          <DeleteButton index={index} id={id} onDelete={onDelete} />
+          <DeleteButton index={index} id={id} onDelete={onDelete}/>
         ) : (
           <></>
         )}

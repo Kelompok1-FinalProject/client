@@ -61,7 +61,6 @@ function MenuAdmin() {
 
   return (
     <>
-      <h1>Menu Admin</h1>
       <div className="d-flex justify-content-around">
         <input
           type="radio"
@@ -73,7 +72,7 @@ function MenuAdmin() {
           checked={selectedCategory === "makanan"}
           onChange={handleCategoryChange}
         />
-        <label className="btn btn-primary" htmlFor="option1">
+        <label className="btn btn-primary btn-lg p-3 w-25 rounded-pill " htmlFor="option1">
           Makanan
         </label>
 
@@ -87,17 +86,17 @@ function MenuAdmin() {
           checked={selectedCategory === "minuman"}
           onChange={handleCategoryChange}
         />
-        <label className="btn btn-primary" htmlFor="option2">
+        <label className="btn btn-primary btn-lg p-3 rounded-pill w-25" htmlFor="option2">
           Minuman
         </label>
       </div>
 
-      <div className="mx-auto p-4">
+      <div className="mx-auto p-4 pb-5">
         <table className="table table-bordered">
           <thead>
             <tr>
               <th>Gambar</th>
-              <th>Name</th>
+              <th className="px-5">Name</th>
               <th>Harga</th>
               <th>Action</th>
             </tr>
@@ -114,7 +113,7 @@ function MenuAdmin() {
       <div>
         {userRole === "Owner" ? (
           <Button
-            className="col-3 mb-1 btn-outline-primary"
+            className="col-3 mx-auto btn-outline-primary fixed-bottom p-3 fs-2 w-100 text-dark fw-bold"
             variant="light"
             type="submit"
             onClick={handleAddMenuClick}
