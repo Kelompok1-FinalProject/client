@@ -45,11 +45,20 @@ async function login({ email, password }) {
 
   const responseJson = await response.json();
   if (response.status >= 400) {
-    alert(responseJson.message);
-    return { error: true, code: response.status, data: responseJson.data };
+    return {
+      error: true,
+      code: response.status,
+      data: responseJson.data,
+      message: responseJson.message,
+    };
   }
 
-  return { error: false, code: response.status, data: responseJson.data };
+  return {
+    error: false,
+    code: response.status,
+    data: responseJson.data,
+    message: responseJson.message,
+  };
 }
 
 async function register({ name, role, email, password }) {
@@ -64,11 +73,14 @@ async function register({ name, role, email, password }) {
   const responseJson = await response.json();
 
   if (response.status >= 400) {
-    alert(responseJson.msg);
-    return { error: true, code: response.status };
+    return {
+      error: true,
+      code: response.status,
+      message: responseJson.message,
+    };
   }
 
-  return { error: false, code: response.status };
+  return { error: false, code: response.status, message: responseJson.message };
 }
 
 async function testServer() {
@@ -122,8 +134,10 @@ async function getMenuId(id) {
   return { error: false, code: response.status, data: responseJson.data };
 }
 
-async function getMenuKategori(kategori) {
-  const response = await fetch(`${BASE_URL}/menu/${kategori}/menu`);
+async function getMenuKategori(kategori, status) {
+  const response = await fetch(
+    `${BASE_URL}/menu/${kategori}/menu?status=${status}`
+  );
   const responseJson = await response.json();
 
   if (response.status >= 400) {
@@ -195,7 +209,11 @@ async function addCustomer({ name, noMeja }) {
   const responseJson = await response.json();
 
   if (response.status >= 400) {
-    return { error: true, code: response.status, data: null };
+    return {
+      error: true,
+      code: response.status,
+      message: responseJson.message,
+    };
   }
 
   return { error: false, code: response.status, data: responseJson.data };

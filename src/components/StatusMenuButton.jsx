@@ -4,38 +4,38 @@ import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 // import hapus from "../assets/delete.png";
 
-function DeleteButton({ index, id, onDelete }) {
+function StatusMenuButton({ index, status, id, onPrivatePublic }) {
   return (
     <Button
       variant="dark"
       className="btn-outline-danger fs-6"
       onClick={() => {
+        const newStatus = status === "public" ? "private" : "public";
         Swal.fire({
-          title: "Apakah Anda yakin?",
-          text: "Anda tidak dapat mengembalikan menu yang telah dihapus!",
+          title: `Apakah Anda mem-${newStatus} menu?`,
           icon: "warning",
           showCancelButton: true,
           confirmButtonColor: "#3085d6",
           cancelButtonColor: "#d33",
-          confirmButtonText: "Ya, hapus!",
+          confirmButtonText: `Ya, ${newStatus}!`,
           cancelButtonText: "Batal",
         }).then((result) => {
           if (result.isConfirmed) {
-            onDelete(id);
+            onPrivatePublic(id, newStatus);
           }
         });
       }}
     >
-      {/* <img src={hapus} alt="Profile" width="25" height="25" /> */}
-      Hapus
+      {status}
     </Button>
   );
 }
 
-DeleteButton.protoTypes = {
+StatusMenuButton.protoTypes = {
   index: PropTypes.number.isRequired,
+  status: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
-  onDelete: PropTypes.func.isRequired,
+  onPrivatePublic: PropTypes.func.isRequired,
 };
 
-export { DeleteButton };
+export { StatusMenuButton };

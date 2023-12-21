@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { login, putAccessToken, putRole } from "../../utils/server";
+import Swal from "sweetalert2";
 
 function Login() {
   const navigate = useNavigate();
@@ -21,6 +22,12 @@ function Login() {
       putAccessToken(accessToken);
       putRole(role);
       navigate("/homeadmin");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Gagal Login",
+        text: `${response.message}`,
+      });
     }
   }
 

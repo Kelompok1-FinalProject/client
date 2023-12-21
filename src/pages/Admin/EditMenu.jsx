@@ -1,28 +1,39 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import { addMenu } from "../../utils/server";
+import { useNavigate, useParams } from "react-router-dom";
+import { addMenu, getMenuId, updateMenu } from "../../utils/server";
 
-function AddMenu() {
+function EditMenu() {
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const [menu, setMenu] = useState({
     name: "",
     description: "",
     gambar: "",
     harga: 0,
-    kategori: "",
   });
+
+  useEffect(() => {
+    getMenuId(id)
+      .then((result) => {
+        const data = result.data;
+        setMenu(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }, [id]);
 
   function onSubmitHandler(event) {
     event.preventDefault();
-    addMenu(menu);
+    updateMenu(id, menu.name, menu.description, menu.gambar, menu.harga);
     navigate("/homeadmin/menu");
   }
 
   return (
     <div className="p-2">
-      <strong className="fs-1 text-center text-light">Form Add Menu</strong>
+      <strong className="fs-1 text-center text-light">Form Edit Menu</strong>
       <Form
         className="row g-3 m-5 text-light"
         onSubmit={(event) => {
@@ -38,23 +49,9 @@ function AddMenu() {
             }}
             type="text"
             placeholder="Add Name"
+            value={menu.name}
             required
           />
-        </Form.Group>
-        <Form.Group className="row-md-6 text-start">
-          <Form.Label>Kategori</Form.Label>
-          <Form.Select
-            onChange={(event) => {
-              const value = event.target.value;
-              setMenu({ ...menu, kategori: value });
-            }}
-            type="text"
-            required
-          >
-            <option value="">-- Pilih Kategori --</option>
-            <option value="makanan">Makanan</option>
-            <option value="minuman">Minuman</option>
-          </Form.Select>
         </Form.Group>
         <Form.Group className="col-md-12 text-start">
           <Form.Label>Harga</Form.Label>
@@ -65,6 +62,7 @@ function AddMenu() {
             }}
             type="text"
             placeholder="Add Harga"
+            value={menu.harga}
             required
           />
         </Form.Group>
@@ -77,6 +75,7 @@ function AddMenu() {
             }}
             type="text"
             placeholder="Add Description"
+            value={menu.description}
             as="textarea"
             rows={3}
             required
@@ -91,6 +90,7 @@ function AddMenu() {
             }}
             type="text"
             placeholder="Add Gambar"
+            value={menu.gambar}
             required
           />
         </Form.Group>
@@ -104,7 +104,7 @@ function AddMenu() {
             variant="light"
             type="submit"
           >
-            Create
+            Update
           </Button>
         ) : (
           <Button
@@ -113,7 +113,7 @@ function AddMenu() {
             type="submit"
             disabled
           >
-            Create
+            Update
           </Button>
         )}
       </Form>
@@ -121,4 +121,4 @@ function AddMenu() {
   );
 }
 
-export default AddMenu;
+export default EditMenu;

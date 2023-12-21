@@ -15,13 +15,23 @@ function Register() {
     event.preventDefault();
     // TODO HANDLE LOGIN HERE
     const response = await register({ name, role, email, password });
-    if (response) {
+    if (!response.error) {
       Swal.fire({
         icon: "success",
         title: "Account Berhasil dibuat",
-        text: `Account dengan nama ${name} berhasil dibuat`,
+        text: `${response.message}`,
       });
       navigate("/login");
+    } else {
+      const newMessage =
+        response.message === "Validation error: Validation len on name failed"
+          ? "Panjang nama min 3 karakter dan max 20 karakter"
+          : response.message;
+      Swal.fire({
+        icon: "error",
+        title: "Account Gagal dibuat",
+        text: `${newMessage}`,
+      });
     }
   }
   return (

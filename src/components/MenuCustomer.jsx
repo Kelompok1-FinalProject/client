@@ -1,11 +1,11 @@
-import MenuRow from "./MenuRow";
-function MenuList(props) {
-  const { menus, onDelete, role, onPrivatePublic } = props;
+import MenuCustomerRow from "./MenuCustomerRow";
+function MenuCustomer(props) {
+  const { menus, onPlus, onMin, onKeranjang, inputValues } = props;
 
   return (
     <>
       {menus.map((menu, index) => (
-        <MenuRow
+        <MenuCustomerRow
           key={menu.id}
           no={index + 1}
           index={index}
@@ -15,17 +15,18 @@ function MenuList(props) {
           harga={menu.harga}
           kategori={menu.kategori}
           status={menu.status}
-          onDelete={onDelete}
-          onPrivatePublic={onPrivatePublic}
-          role={role}
+          onPlus={onPlus}
+          onMin={onMin}
+          onKeranjang={onKeranjang}
+          inputValues={inputValues}
         >
           {menu.description && typeof menu.description === "object"
             ? menu.description.text
             : menu.description}
-        </MenuRow>
+        </MenuCustomerRow>
       ))}
     </>
   );
 }
 
-export default MenuList;
+export default MenuCustomer;
