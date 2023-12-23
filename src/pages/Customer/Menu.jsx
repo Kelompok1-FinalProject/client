@@ -27,11 +27,11 @@ function Menu() {
       [menuId]: parseInt(value) + 1,
     }));
   };
-  const handleMinClick = (menuId) => {
+  const handleMinClick = (menuId, value) => {
     if (inputValues[menuId] > 0) {
       setInputValues((prevValues) => ({
         ...prevValues,
-        [menuId]: inputValues[menuId] - 1,
+        [menuId]: parseInt(value) - 1,
       }));
     }
   };

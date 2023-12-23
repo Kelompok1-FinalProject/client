@@ -43,7 +43,7 @@ function TransaksiRow({
   }
   async function onUpdateHandler(event) {
     event.preventDefault();
-    if (!EditJumlah === 0) {
+    if (!EditJumlah == 0) {
       const response = onUpdate(id, menuId, EditJumlah);
       if (!response.error) {
         Swal.fire({
