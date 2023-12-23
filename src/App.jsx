@@ -8,6 +8,8 @@ import EditMenu from "./pages/Admin/EditMenu";
 import AddCustomer from "./pages/Customer/AddCustomer";
 import Home from "./pages/Customer/Home";
 import Menu from "./pages/Customer/Menu";
+import Payment from "./pages/Customer/Payment";
+import Confirm from "./pages/Customer/Confirm";
 import "./App.css";
 import { Routes, Route, useLocation, Navigate, Outlet } from "react-router-dom";
 import { getAccessToken } from "./utils/server";
@@ -22,7 +24,7 @@ function NeedLoginAdmin() {
 
   return <Outlet />;
 }
-function NeedLoginCustomer() {
+function NeedCreateCustomer() {
   let auth = getAccessToken();
   let location = useLocation();
 
@@ -45,9 +47,11 @@ function App() {
           <Route path="/homeadmin/menu/edit/:id" element={<EditMenu />} />
         </Route>
         <Route path="/" element={<AddCustomer />} />
-        <Route element={<NeedLoginCustomer />}>
+        <Route element={<NeedCreateCustomer />}>
           <Route path="/home" element={<Home />} />
           <Route path="/home/menu" element={<Menu />} />
+          <Route path="/home/payment" element={<Payment />} />
+          <Route path="/home/payment/confirm" element={<Confirm />} />
         </Route>
       </Routes>
     </div>

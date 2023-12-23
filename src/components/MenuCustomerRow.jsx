@@ -28,13 +28,13 @@ function MenuRow({
     setInputValue((prevValue) => prevValue + 1);
   };
   const handleMinClick = () => {
-    if (!inputValue == 0) {
+    if (!inputValue === 0) {
       onMin(id, inputValue);
       setInputValue((prevValue) => prevValue - 1);
     }
   };
   const handleKeranjangClick = async () => {
-    if (!inputValue == 0) {
+    if (!inputValue === 0) {
       const menuId = id;
       const jumlahOrder = inputValue;
       const response = await addTransaksi({ menuId, jumlahOrder });
@@ -56,7 +56,7 @@ function MenuRow({
         <div className="">
           <img
             src={gambar}
-            alt="My Image"
+            alt="Menu"
             width={enlargeImage ? 180 : 90}
             height={enlargeImage ? 180 : 90}
             className="rounded shadow"

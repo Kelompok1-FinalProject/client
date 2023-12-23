@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { addCustomer, putAccessToken } from "../../utils/server";
 import Swal from "sweetalert2";
 
@@ -24,10 +24,13 @@ function AddCustomer() {
         }
       },
     });
-    if (noMeja < 100 && name.length >= 3) {
-      const response = await addCustomer({ name, noMeja });
-      putAccessToken(response.data);
-      navigate("/home");
+    const parsedNoMeja = parseInt(noMeja, 10);
+    if (parsedNoMeja < 100 && name.length >= 3) {
+      const response = await addCustomer({ name, noMeja: parsedNoMeja });
+      if (!response.error) {
+        putAccessToken(response.data);
+        navigate("/home");
+      }
     } else {
       Swal.fire({
         icon: "error",

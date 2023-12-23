@@ -1,20 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import MenuCustomer from "../../components/MenuCustomer";
 import {
+  deleteTransaksi,
   getCustomerId,
-  getMenuId,
   getMenuKategori,
   getTransaksiId,
+  updateTransaksi,
 } from "../../utils/server";
 import Transaksi from "../../components/Transaksi";
-// import Modal from "../../components/Modal";
-import showArrayAlert from "../../components/showArrayAlert";
 
 function Menu() {
-  const navigate = useNavigate();
   const [menus, setMenus] = useState([]);
   const [pesanan, setPesanan] = useState({});
   const [filterMenu, setFilterMenu] = useState("Harga Termurah");
@@ -31,7 +27,6 @@ function Menu() {
       [menuId]: parseInt(value) + 1,
     }));
   };
-
   const handleMinClick = (menuId) => {
     if (inputValues[menuId] > 0) {
       setInputValues((prevValues) => ({
@@ -46,8 +41,67 @@ function Menu() {
         ...prevValues,
         [menuId]: inputValues[menuId] * 0,
       }));
+      getCustomerId()
+        .then((result) => {
+          const data = result.data;
+          setPesanan(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      getTransaksiId()
+        .then((result) => {
+          const data = result.data;
+          setOrder(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
     }
   };
+  const handleDeleteChange = async (id) => {
+    const response = await deleteTransaksi(id);
+    if (!response.error) {
+      getCustomerId()
+        .then((result) => {
+          const data = result.data;
+          setPesanan(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      getTransaksiId()
+        .then((result) => {
+          const data = result.data;
+          setOrder(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
+  const handleUpdateChange = async (id, menuId, EditJumlah) => {
+    const response = await updateTransaksi(id, menuId, EditJumlah);
+    if (!response.error) {
+      getCustomerId()
+        .then((result) => {
+          const data = result.data;
+          setPesanan(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+      getTransaksiId()
+        .then((result) => {
+          const data = result.data;
+          setOrder(data);
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+  };
+
   useEffect(() => {
     getMenuKategori(selectedCategory)
       .then((result) => {
@@ -75,9 +129,6 @@ function Menu() {
       .catch((error) => {
         console.error("Error:", error);
       });
-  }, [handleKeranjangClick]);
-
-  useEffect(() => {
     getTransaksiId()
       .then((result) => {
         const data = result.data;
@@ -142,18 +193,22 @@ function Menu() {
           onKeranjang={handleKeranjangClick}
         />
       </div>
-      {/* <div className="container bg-primary mb-0">
-        {pesanan &&
+      <div className="container bg-primary mb-0">
+        {order &&
+          pesanan &&
           pesanan.name &&
           pesanan.Transaksis &&
           pesanan.Transaksis.length > 0 && (
             <Transaksi
               jumlahPesanan={pesanan.Transaksis.length}
               bayar={pesanan.totalPembayaran}
+              noMeja={pesanan.noMeja}
               order={order}
+              onDelete={handleDeleteChange}
+              onUpdate={handleUpdateChange}
             />
           )}
-      </div> */}
+      </div>
     </>
   );
 }
