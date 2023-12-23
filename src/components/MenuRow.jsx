@@ -1,5 +1,7 @@
 import React from "react";
 import { DeleteButton } from "./DeleteButton";
+import { StatusMenuButton } from "./StatusMenuButton";
+import { EditButton } from "./EditButton";
 import PropTypes from "prop-types";
 
 function MenuRow({
@@ -10,18 +12,32 @@ function MenuRow({
   index,
   gambar,
   harga,
+  status,
   onDelete,
+  onPrivatePublic,
   role,
 }) {
   return (
     <tr>
       <td>
-        <img src={gambar} alt="My Image" />
+        <img
+          src={gambar}
+          alt="My Image"
+          width={90}
+          height={90}
+          className="rounded shadow"
+        />
       </td>
       <td>{name}</td>
       <td>Rp. {harga}</td>
       <td>
-        <button>a</button>
+        <StatusMenuButton
+          index={index}
+          id={id}
+          onPrivatePublic={onPrivatePublic}
+          status={status}
+        />
+        {role === "Owner" ? <EditButton index={index} id={id} /> : <></>}
         {role === "Owner" ? (
           <DeleteButton index={index} id={id} onDelete={onDelete} />
         ) : (

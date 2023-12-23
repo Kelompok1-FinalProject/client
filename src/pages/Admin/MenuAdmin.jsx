@@ -6,9 +6,11 @@ import {
   getMenu,
   getMenuKategori,
   getRole,
+  updateStatusMenu,
 } from "../../utils/server";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function MenuAdmin() {
   const navigate = useNavigate();
@@ -39,6 +41,25 @@ function MenuAdmin() {
     }
   };
 
+  const onPrivatePublicHandler = async (id, status) => {
+    const privatePublicResult = await updateStatusMenu(id, status);
+
+    if (!privatePublicResult.error) {
+      const getMenusResult = await getMenuKategori(selectedCategory);
+
+      if (!getMenusResult.error) {
+        setMenus(getMenusResult.data);
+      } else {
+        console.error(
+          "Error fetching menus after deletion:",
+          getMenusResult.code
+        );
+      }
+    } else {
+      console.error("Error deleting note:", privatePublicResult.code);
+    }
+  };
+
   const handleAddMenuClick = () => {
     navigate("/homeadmin/menu/add");
   };
@@ -46,6 +67,14 @@ function MenuAdmin() {
   useEffect(() => {
     const role = getRole();
     setUserRole(role);
+    getMenuKategori(selectedCategory)
+      .then((result) => {
+        const data = result.data;
+        setMenus(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   }, []);
 
   useEffect(() => {
@@ -106,6 +135,7 @@ function MenuAdmin() {
             <MenuList
               menus={menus}
               onDelete={onDeleteHandler}
+              onPrivatePublic={onPrivatePublicHandler}
               role={userRole}
             />
           </tbody>
