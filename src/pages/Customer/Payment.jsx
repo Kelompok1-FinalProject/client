@@ -18,15 +18,15 @@ function Payment() {
   };
 
   return (
-    <>
-      <div className="p-5 mx-5">
-        <div className="container bg-danger p-3 rounded ">
-          <h1>Payment</h1>
-          <div className="">
+    <div className="d-flex justify-content-center align-items-center vh-100">
+      <div className="p-5 mx-5 card">
+        <div className="container bg-white p-4 rounded">
+          <h1 className="mb-4 mt-2 text-dark">Pilih Metode Pembayaran</h1>
+          <div className="m-5">
             <div className="m-3">
               <input
                 type="radio"
-                className="btn-check"
+                className="visually-hidden"
                 name="options"
                 id="option1"
                 autoComplete="off"
@@ -34,14 +34,19 @@ function Payment() {
                 checked={selectedPayment === "Cash"}
                 onChange={handlePaymentChange}
               />
-              <label className="btn btn-primary" htmlFor="option1">
+              <label
+                className={`btn btn-outline-info btn-lg btn-block rounded-pill text-dark border ${
+                  selectedPayment === "Cash" ? "active" : ""
+                }`}
+                htmlFor="option1"
+              >
                 CASH
               </label>
             </div>
             <div className="m-3">
               <input
                 type="radio"
-                className="btn-check"
+                className="visually-hidden"
                 name="options"
                 id="option2"
                 autoComplete="off"
@@ -49,14 +54,19 @@ function Payment() {
                 checked={selectedPayment === "Qris"}
                 onChange={handlePaymentChange}
               />
-              <label className="btn btn-primary" htmlFor="option2">
+              <label
+                className={`btn btn-outline-info btn-lg btn-block rounded-pill text-dark border ${
+                  selectedPayment === "Qris" ? "active" : ""
+                }`}
+                htmlFor="option2"
+              >
                 QRIS
               </label>
             </div>
             <div className="m-3">
               <input
                 type="radio"
-                className="btn-check"
+                className="visually-hidden"
                 name="options"
                 id="option3"
                 autoComplete="off"
@@ -64,15 +74,30 @@ function Payment() {
                 checked={selectedPayment === "Transfer"}
                 onChange={handlePaymentChange}
               />
-              <label className="btn btn-primary" htmlFor="option3">
+              <label
+                className={`btn btn-outline-info btn-lg btn-block rounded-pill text-dark border ${
+                  selectedPayment === "Transfer" ? "active" : ""
+                }`}
+                htmlFor="option3"
+              >
                 TRANSFER
               </label>
             </div>
           </div>
-          <Button onClick={handleConfirmClick}>OK</Button>
+          <div className="m-3">
+            <Button
+              onClick={handleConfirmClick}
+              variant="light"
+              className={`btn btn-outline-danger btn-lg btn-block rounded-pill text-dark border ${
+                selectedPayment === "OK" ? "active" : ""
+              }`}
+            >
+              OK
+            </Button>
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
