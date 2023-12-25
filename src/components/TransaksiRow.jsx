@@ -61,6 +61,7 @@ function TransaksiRow({
       });
     }
   }
+  const formattedTotalPembayaran = totalPembayaran.toLocaleString();
   return (
     <>
       <thead>
@@ -72,7 +73,7 @@ function TransaksiRow({
             x{jumlahOrder}
           </th>
           <th className="px-3 text-end" scope="col">
-            Rp. {totalPembayaran}
+            Rp. {formattedTotalPembayaran}
           </th>
           <th scope="col">
             <div className="d-flex justify-content-end">

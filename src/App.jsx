@@ -5,6 +5,7 @@ import HomeAdmin from "./pages/Admin/HomeAdmin";
 import MenuAdmin from "./pages/Admin/MenuAdmin";
 import AddMenu from "./pages/Admin/AddMenu";
 import EditMenu from "./pages/Admin/EditMenu";
+import Customer from "./pages/Admin/Customer";
 import AddCustomer from "./pages/Customer/AddCustomer";
 import Home from "./pages/Customer/Home";
 import Menu from "./pages/Customer/Menu";
@@ -13,6 +14,7 @@ import Confirm from "./pages/Customer/Confirm";
 import "./App.css";
 import { Routes, Route, useLocation, Navigate, Outlet } from "react-router-dom";
 import { getAccessToken } from "./utils/server";
+import Pembukuan from "./pages/Admin/Pembukuan";
 
 function NeedLoginAdmin() {
   let auth = getAccessToken();
@@ -45,6 +47,8 @@ function App() {
           <Route path="/homeadmin/menu" element={<MenuAdmin />} />
           <Route path="/homeadmin/menu/add" element={<AddMenu />} />
           <Route path="/homeadmin/menu/edit/:id" element={<EditMenu />} />
+          <Route path="/homeadmin/customer" element={<Customer />} />
+          <Route path="/homeadmin/pembukuan" element={<Pembukuan />} />
         </Route>
         <Route path="/" element={<AddCustomer />} />
         <Route element={<NeedCreateCustomer />}>

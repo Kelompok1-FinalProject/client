@@ -103,7 +103,7 @@ function Menu() {
   };
 
   useEffect(() => {
-    getMenuKategori(selectedCategory)
+    getMenuKategori(selectedCategory, "public")
       .then((result) => {
         const data = result.data;
         setMenus(data);

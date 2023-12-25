@@ -1,4 +1,4 @@
-const BASE_URL = "http://103.127.97.117:4001";
+const BASE_URL = "http://localhost:4001";
 
 function getAccessToken() {
   return localStorage.getItem("accessToken");
@@ -219,8 +219,10 @@ async function addCustomer({ name, noMeja }) {
   return { error: false, code: response.status, data: responseJson.data };
 }
 
-async function getCustomer() {
-  const response = await fetchWithToken(`${BASE_URL}/customer`);
+async function getCustomer(statusPesanan) {
+  const response = await fetchWithToken(
+    `${BASE_URL}/customer?statusPesanan=${statusPesanan}`
+  );
   const responseJson = await response.json();
 
   if (response.status >= 400) {

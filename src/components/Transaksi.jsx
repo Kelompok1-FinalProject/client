@@ -11,6 +11,8 @@ function Transaksi(props) {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const formattedBayar = bayar.toLocaleString();
+
   async function onPesanHandler() {
     Swal.fire({
       title: "Konfirmasi Pesanan",
@@ -35,7 +37,7 @@ function Transaksi(props) {
           <h1>{jumlahPesanan} Pesanan</h1>
         </div>
         <div className="d-flex justify-content-between">
-          <h1 className="mx-5">Rp. {bayar}</h1>
+          <h1 className="mx-5">Rp. {formattedBayar}</h1>
           <Button
             variant="dark"
             className="btn-outline-danger fs-4"
@@ -81,7 +83,7 @@ function Transaksi(props) {
             <div className="d-flex justify-content-between mx-5 my-3">
               <h2 className="p-2">TOTAL</h2>
               <div className="rounded rounded-pill border border-2 border-black p-2 fs-3 fw-bold">
-                Rp. {bayar}
+                Rp. {formattedBayar}
               </div>
             </div>
             <div className="text-center">

@@ -19,6 +19,8 @@ function MenuRow({
   const [enlargeImage, setEnlargeImage] = useState(false);
   const [inputValue, setInputValue] = useState(0);
 
+  const formattedHarga = harga.toLocaleString();
+
   const handleNameClick = () => {
     setShowChildren(!showChildren);
     setEnlargeImage(!enlargeImage);
@@ -68,7 +70,7 @@ function MenuRow({
             onClick={handleNameClick}
           >
             <h5 class="card-title">{name}</h5>
-            <div class="card-text fs-5">Rp. {harga}</div>
+            <div class="card-text fs-5">Rp. {formattedHarga}</div>
           </div>
           {showChildren && (
             <p className="card-text fs-5 text-start">{children}</p>
