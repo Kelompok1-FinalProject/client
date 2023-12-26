@@ -1,3 +1,16 @@
+* {
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  /* hide scrollbar */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+*::-webkit-scrollbar {
+  display: none;
+}
+
 .App {
   text-align: center;
   background-color: #282c34;
@@ -10,6 +23,18 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+}
+
+.hovered {
+  transition: all 0.3s ease; /* Adjust the duration and easing function as needed */
+}
+
+.hoveredBack {
+  transition: all 5s ease;
+}
+
+.hidden {
+  display: none;
 }
 
 .pointer {

@@ -17,19 +17,20 @@ function MenuRow({
   onPrivatePublic,
   role,
 }) {
+  const formattedHarga = harga.toLocaleString();
   return (
-    <tr>
-      <td>
+    <tr className="align-middle">
+      <td className="w-25">
         <img
           src={gambar}
           alt="My Image"
           width={90}
           height={90}
-          className="rounded shadow"
+          className="rounded shadow img-thumbnail"
         />
       </td>
       <td>{name}</td>
-      <td>Rp. {harga}</td>
+      <td>Rp. {formattedHarga}</td>
       <td>
         <StatusMenuButton
           index={index}

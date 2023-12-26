@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
-import { addMenu, getMenuId, updateMenu } from "../../utils/server";
+import { getMenuId, updateMenu } from "../../utils/server";
+import back from "../../icon/back.png";
+import backHover from "../../icon/backHover.png";
 
 function EditMenu() {
   const navigate = useNavigate();
@@ -13,6 +15,17 @@ function EditMenu() {
     gambar: "",
     harga: 0,
   });
+  const [isHoveredBack, setIsHoveredBack] = useState(false);
+
+  const handleMouseEnterBack = () => {
+    setIsHoveredBack(true);
+  };
+  const handleMouseLeaveBack = () => {
+    setIsHoveredBack(false);
+  };
+  const handleBackClick = () => {
+    navigate("/homeadmin/menu");
+  };
 
   useEffect(() => {
     getMenuId(id)
@@ -32,92 +45,121 @@ function EditMenu() {
   }
 
   return (
-    <div className="p-2">
-      <strong className="fs-1 text-center text-light">Form Edit Menu</strong>
-      <Form
-        className="row g-3 m-5 text-light"
-        onSubmit={(event) => {
-          onSubmitHandler(event);
-        }}
-      >
-        <Form.Group className="col-md-12 text-start">
-          <Form.Label>Name</Form.Label>
-          <Form.Control
-            onChange={(event) => {
-              const value = event.target.value;
-              setMenu({ ...menu, name: value });
+    <>
+      <img
+        src={isHoveredBack ? backHover : back}
+        className={`border border-primary rounded rounded-circle m-3 fixed-top ${
+          isHoveredBack === false ? "hoveredBack" : ""
+        }`}
+        alt="Profile"
+        width="40"
+        height="40"
+        onMouseEnter={handleMouseEnterBack}
+        onMouseLeave={handleMouseLeaveBack}
+        onClick={handleBackClick}
+      />
+      <div className="py-1 mx-5 m-auto">
+        <strong className="fs-1 text-center text-light">Form Edit Menu</strong>
+        <div className={`menu-image-container ${menu.gambar ? "" : "hidden"}`}>
+          {menu.gambar && (
+            <img
+              src={menu.gambar}
+              alt="Image Post"
+              className="img-thumbnail w-25 mt-3"
+            />
+          )}
+        </div>
+
+        <div className="w-75 mx-auto">
+          <Form
+            className="row g-3 m-5 text-light mx-5"
+            onSubmit={(event) => {
+              onSubmitHandler(event);
             }}
-            type="text"
-            placeholder="Add Name"
-            value={menu.name}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="col-md-12 text-start">
-          <Form.Label>Harga</Form.Label>
-          <Form.Control
-            onChange={(event) => {
-              const value = event.target.value;
-              setMenu({ ...menu, harga: value });
-            }}
-            type="text"
-            placeholder="Add Harga"
-            value={menu.harga}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="col-12 text-start">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            onChange={(event) => {
-              const value = event.target.value;
-              setMenu({ ...menu, description: value });
-            }}
-            type="text"
-            placeholder="Add Description"
-            value={menu.description}
-            as="textarea"
-            rows={3}
-            required
-          />
-        </Form.Group>
-        <Form.Group className="col-md-12 text-start">
-          <Form.Label>Gambar</Form.Label>
-          <Form.Control
-            onChange={(event) => {
-              const value = event.target.value;
-              setMenu({ ...menu, gambar: value });
-            }}
-            type="text"
-            placeholder="Add Gambar"
-            value={menu.gambar}
-            required
-          />
-        </Form.Group>
-        {menu.name &&
-        menu.kategori &&
-        menu.harga &&
-        menu.description &&
-        menu.gambar ? (
-          <Button
-            className="col-2 btn-outline-primary position-relative start-50 translate-middle-x"
-            variant="light"
-            type="submit"
           >
-            Update
-          </Button>
-        ) : (
-          <Button
-            className="col-2 btn-outline-danger position-relative start-50 translate-middle-x"
-            variant="light"
-            type="submit"
-            disabled
-          >
-            Update
-          </Button>
-        )}
-      </Form>
-    </div>
+            <div className="col-md-12">
+              <Form.Group className="mb-3 d-flex justify-content-between col-md-12 text-start">
+                <Form.Label className="me-3 col-md-2">Name</Form.Label>
+                <Form.Control
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setMenu({ ...menu, name: value });
+                  }}
+                  type="text"
+                  placeholder="Add Name"
+                  value={menu.name}
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3 d-flex justify-content-between col-md-12 text-start">
+                <Form.Label className="me-3 col-md-2">Harga</Form.Label>
+                <Form.Control
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setMenu({ ...menu, harga: value });
+                  }}
+                  type="text"
+                  placeholder="Add Harga"
+                  value={menu.harga}
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3 d-flex justify-content-between col-md-12 text-start">
+                <Form.Label className="me-3 col-md-2">Description</Form.Label>
+                <Form.Control
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setMenu({ ...menu, description: value });
+                  }}
+                  type="text"
+                  placeholder="Add Description"
+                  value={menu.description}
+                  as="textarea"
+                  rows={3}
+                  required
+                />
+              </Form.Group>
+              <Form.Group className="mb-3 d-flex justify-content-between col-md-12 text-start">
+                <Form.Label className="me-3 col-md-2">Gambar</Form.Label>
+                <Form.Control
+                  onChange={(event) => {
+                    const value = event.target.value;
+                    setMenu({ ...menu, gambar: value });
+                  }}
+                  type="text"
+                  placeholder="Add Gambar"
+                  value={menu.gambar}
+                  required
+                />
+              </Form.Group>
+            </div>
+
+            {menu.name &&
+            menu.kategori &&
+            menu.harga &&
+            menu.description &&
+            menu.gambar ? (
+              <Button
+                className="col-2 rounded rounded-pill btn-outline-primary position-relative start-50 translate-middle-x"
+                variant="light"
+                type="submit"
+              >
+                Update
+              </Button>
+            ) : (
+              <Button
+                className="col-2 rounded rounded-pill btn-outline-danger position-relative start-50 translate-middle-x"
+                variant="light"
+                type="submit"
+                disabled
+              >
+                Update
+              </Button>
+            )}
+          </Form>
+        </div>
+      </div>
+    </>
   );
 }
 

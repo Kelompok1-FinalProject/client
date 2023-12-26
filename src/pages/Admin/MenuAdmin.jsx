@@ -2,21 +2,31 @@ import React, { useEffect, useState } from "react";
 import MenuList from "../../components/MenuList";
 import {
   deleteMenu,
-  getAccessToken,
-  getMenu,
   getMenuKategori,
   getRole,
   updateStatusMenu,
 } from "../../utils/server";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
+import back from "../../icon/back.png";
+import backHover from "../../icon/backHover.png";
 
 function MenuAdmin() {
   const navigate = useNavigate();
   const [menus, setMenus] = useState([]);
   const [userRole, setUserRole] = useState(null);
   const [selectedCategory, setSelectedCategory] = useState("makanan");
+  const [isHoveredBack, setIsHoveredBack] = useState(false);
+
+  const handleMouseEnterBack = () => {
+    setIsHoveredBack(true);
+  };
+  const handleMouseLeaveBack = () => {
+    setIsHoveredBack(false);
+  };
+  const handleBackClick = () => {
+    navigate("/homeadmin");
+  };
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -90,8 +100,19 @@ function MenuAdmin() {
 
   return (
     <>
-      <h1>Menu Admin</h1>
-      <div className="d-flex justify-content-around">
+      <img
+        src={isHoveredBack ? backHover : back}
+        className={`border border-primary rounded rounded-circle m-3 fixed-top ${
+          isHoveredBack === false ? "hoveredBack" : ""
+        }`}
+        alt="Profile"
+        width="40"
+        height="40"
+        onMouseEnter={handleMouseEnterBack}
+        onMouseLeave={handleMouseLeaveBack}
+        onClick={handleBackClick}
+      />
+      <div className="d-flex justify-content-around pt-3">
         <input
           type="radio"
           className="btn-check"
@@ -102,7 +123,12 @@ function MenuAdmin() {
           checked={selectedCategory === "makanan"}
           onChange={handleCategoryChange}
         />
-        <label className="btn btn-primary" htmlFor="option1">
+        <label
+          className={`border border-dark fw-bold btn btn-outline-info btn-lg btn-block btn-lg p-3 w-25 rounded-pill ${
+            selectedCategory === "makanan" ? "active" : "btn-light text-dark"
+          }`}
+          htmlFor="option1"
+        >
           Makanan
         </label>
 
@@ -116,17 +142,22 @@ function MenuAdmin() {
           checked={selectedCategory === "minuman"}
           onChange={handleCategoryChange}
         />
-        <label className="btn btn-primary" htmlFor="option2">
+        <label
+          className={`border border-dark fw-bold btn btn-outline-info btn-lg btn-block btn-lg p-3 w-25 rounded-pill ${
+            selectedCategory === "minuman" ? "active" : "btn-light text-dark"
+          }`}
+          htmlFor="option2"
+        >
           Minuman
         </label>
       </div>
 
-      <div className="mx-auto p-4">
+      <div className="mx-auto p-4 pb-5">
         <table className="table table-bordered">
           <thead>
             <tr>
               <th>Gambar</th>
-              <th>Name</th>
+              <th className="px-5">Name</th>
               <th>Harga</th>
               <th>Action</th>
             </tr>
@@ -144,7 +175,7 @@ function MenuAdmin() {
       <div>
         {userRole === "Owner" ? (
           <Button
-            className="col-3 mb-1 btn-outline-primary"
+            className="col-3 mx-auto btn-outline-primary fixed-bottom p-2 fs-2 w-100 text-dark fw-bold"
             variant="light"
             type="submit"
             onClick={handleAddMenuClick}

@@ -1,20 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import CustomerList from "../../components/CustomerList";
-import {
-  getCustomer,
-  getCustomerWaitingList,
-  getLaporan,
-  updateStatusBayar,
-  updateStatusPesanan,
-} from "../../utils/server";
+import { getLaporan } from "../../utils/server";
 import PembukuanList from "../../components/PembukuanList";
+import back from "../../icon/back.png";
+import backHover from "../../icon/backHover.png";
+import { useNavigate } from "react-router-dom";
 
 function Pembukuan() {
+  const navigate = useNavigate();
   const [filter, setFilter] = useState("semua");
   const [search, setSearch] = useState("");
   const [customer, setCustomer] = useState([]);
-  const [laporan, setLaporan] = useState([]);
+  const [isHoveredBack, setIsHoveredBack] = useState(false);
+
+  const handleMouseEnterBack = () => {
+    setIsHoveredBack(true);
+  };
+  const handleMouseLeaveBack = () => {
+    setIsHoveredBack(false);
+  };
+  const handleBackClick = () => {
+    navigate("/homeadmin");
+  };
 
   const handleChangeSearch = (event) => {
     setSearch(event.target.value);
@@ -33,6 +40,18 @@ function Pembukuan() {
 
   return (
     <>
+      <img
+        src={isHoveredBack ? backHover : back}
+        className={`border border-primary rounded rounded-circle m-3 fixed-top ${
+          isHoveredBack === false ? "hoveredBack" : ""
+        }`}
+        alt="Profile"
+        width="40"
+        height="40"
+        onMouseEnter={handleMouseEnterBack}
+        onMouseLeave={handleMouseLeaveBack}
+        onClick={handleBackClick}
+      />
       <h1>Ringkasan Pembukuan Customer</h1>
       <div className="d-flex justify-content-between">
         <div className="d-flex justify-content-between">

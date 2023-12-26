@@ -7,12 +7,27 @@ import {
   updateStatusBayar,
   updateStatusPesanan,
 } from "../../utils/server";
+import { useNavigate } from "react-router-dom";
+import back from "../../icon/back.png";
+import backHover from "../../icon/backHover.png";
 
 function Customer() {
+  const navigate = useNavigate();
   const [selectedCustomer, setSelectedCustomer] = useState("Created");
   const [filter, setFilter] = useState("semua");
   const [search, setSearch] = useState("");
   const [order, setOrder] = useState([]);
+  const [isHoveredBack, setIsHoveredBack] = useState(false);
+
+  const handleMouseEnterBack = () => {
+    setIsHoveredBack(true);
+  };
+  const handleMouseLeaveBack = () => {
+    setIsHoveredBack(false);
+  };
+  const handleBackClick = () => {
+    navigate("/homeadmin");
+  };
 
   const handleCustomerChange = (event) => {
     setSelectedCustomer(event.target.value);
@@ -78,6 +93,18 @@ function Customer() {
 
   return (
     <>
+      <img
+        src={isHoveredBack ? backHover : back}
+        className={`border border-primary rounded rounded-circle m-3 fixed-top ${
+          isHoveredBack === false ? "hoveredBack" : ""
+        }`}
+        alt="Profile"
+        width="40"
+        height="40"
+        onMouseEnter={handleMouseEnterBack}
+        onMouseLeave={handleMouseLeaveBack}
+        onClick={handleBackClick}
+      />
       <h1>Customer List</h1>
       <div className="d-flex justify-content-around">
         <input

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { getRole } from "../../utils/server";
+import { deleteAccessToken, deleteRole, getRole } from "../../utils/server";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import menuIcon from "../../icon/menu.png";
 import pembukuanIcon from "../../icon/report.png";
 import customerIcon from "../../icon/customer.png";
+import logout from "../../icon/logout.png";
 
 function HomeAdmin() {
   const navigate = useNavigate();
@@ -12,6 +13,14 @@ function HomeAdmin() {
   const [isHoveredMenu, setIsHoveredMenu] = useState(false);
   const [isHoveredReport, setIsHoveredReport] = useState(false);
   const [isHoveredCustomer, setIsHoveredCustomer] = useState(false);
+  const [isHoveredBack, setIsHoveredBack] = useState(false);
+
+  const handleMouseEnterLogout = () => {
+    setIsHoveredBack(true);
+  };
+  const handleMouseLeaveLogout = () => {
+    setIsHoveredBack(false);
+  };
 
   const handleMouseEnterMenu = () => {
     setIsHoveredMenu(true);
@@ -51,8 +60,26 @@ function HomeAdmin() {
     navigate("/homeadmin/pembukuan");
   };
 
+  const handleLogoutClick = () => {
+    deleteAccessToken();
+    deleteRole();
+    navigate("/login");
+  };
+
   return (
     <>
+      <Button
+        variant="danger"
+        className={`btn btn-outline-danger rounded rounded-pill py-0 px-1 fs-5 m-3 position-fixed top-0 end-0 ${
+          isHoveredBack ? "hoveredBack" : ""
+        }`}
+        onMouseEnter={handleMouseEnterLogout}
+        onMouseLeave={handleMouseLeaveLogout}
+        onClick={handleLogoutClick}
+      >
+        <img src={logout} alt="Profile" width="40" height="40" />
+        {isHoveredBack ? <span>Logout</span> : <></>}
+      </Button>
       <div>
         <img
           src="https://i.imgur.com/UGQiraA.png"

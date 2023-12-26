@@ -2,13 +2,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import Swal from "sweetalert2";
-// import hapus from "../assets/delete.png";
+import view from "../icon/public.png";
+import hide from "../icon/private.png";
 
 function StatusMenuButton({ index, status, id, onPrivatePublic }) {
   return (
     <Button
-      variant="dark"
-      className="btn-outline-danger fs-6"
+      variant="light"
+      className="m-1 rounded rounded-circle p-0"
       onClick={() => {
         const newStatus = status === "public" ? "private" : "public";
         Swal.fire({
@@ -26,7 +27,12 @@ function StatusMenuButton({ index, status, id, onPrivatePublic }) {
         });
       }}
     >
-      {status}
+      <img
+        src={status === "public" ? view : hide}
+        alt="Profile"
+        width="50"
+        height="50"
+      />
     </Button>
   );
 }
