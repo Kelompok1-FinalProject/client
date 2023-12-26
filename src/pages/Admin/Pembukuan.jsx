@@ -34,7 +34,7 @@ function Pembukuan() {
   return (
     <>
       <h1>Ringkasan Pembukuan Customer</h1>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between mx-auto" style={{ maxWidth: '1200px', marginTop: '20px' }}>
         <div className="d-flex justify-content-between">
           <h3>Urutkan Berdasarkan : </h3>
           <Form.Group className="col-s-2 text-start">
@@ -45,6 +45,7 @@ function Pembukuan() {
               }}
               type="text"
               required
+              style={{ borderRadius: '20px' }}
             >
               <option value="semua">Semua</option>
               <option value={new Date()}>Hari Ini</option>
@@ -64,10 +65,10 @@ function Pembukuan() {
           />
         </div>
       </div>
-      <div>
-        <table className="table">
+      <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginTop: '10px' }}>
+        <table className="table table-striped table-bordered table-hover" style={{ width: '91%', fontSize: '23px', marginBottom: '20px' }}>  
           <thead>
-            <tr>
+            <tr style={{ fontWeight: 'bold' }}>
               <td>No</td>
               <td>Nama Pembeli</td>
               <td>Pemasukan</td>
