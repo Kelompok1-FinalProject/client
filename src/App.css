@@ -1,6 +1,5 @@
 .App {
   text-align: center;
-  background-color: #282c34;
   top: 0;
   left: 0;
   right: 0;
@@ -9,13 +8,31 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .pointer {
   cursor: pointer;
 }
 
+.bg-first {
+  background-image: url(https://i.imgur.com/AzUehWp.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.bgAll {
+  background-image: url(https://i.imgur.com/6i5maED.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+
+.carousel-image {
+  width: 100%; /* Pastikan gambar mengisi lebar carousel item */
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

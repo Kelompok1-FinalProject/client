@@ -9,6 +9,8 @@ import {
   updateTransaksi,
 } from "../../utils/server";
 import Transaksi from "../../components/Transaksi";
+import "../../App.css";
+
 
 function Menu() {
   const [menus, setMenus] = useState([]);
@@ -141,8 +143,11 @@ function Menu() {
 
   return (
     <>
-      <h1>Pilihan Menu</h1>
-      <div className="d-flex justify-content-around mb-3">
+    <div className="bgAll pt-5 pb-5">
+    <div className="mt-3 pt-2">
+      <div className="border border-top-0 fixed-top bg-body-tertiary pt-1 rounded-5 rounded-top-0">
+      <h3 className="fw-bold">PILIHAN MENU</h3>
+      <div className="bg-warning-subtle d-flex justify-content-around py-2 rounded-5 rounded-top-0 border border-warning my-auto pt-2">
         <input
           type="radio"
           className="btn-check"
@@ -153,7 +158,7 @@ function Menu() {
           checked={selectedCategory === "makanan"}
           onChange={handleCategoryChange}
         />
-        <label className="btn btn-primary" htmlFor="option1">
+        <label className="px-5 border border-dark-subtle btn btn-warning rounded-pill fw-bold fixed" htmlFor="option1">
           Makanan
         </label>
 
@@ -167,12 +172,12 @@ function Menu() {
           checked={selectedCategory === "minuman"}
           onChange={handleCategoryChange}
         />
-        <label className="btn btn-primary" htmlFor="option2">
+        <label className="px-5 border border-dark-subtle btn btn-warning rounded-pill fw-bold" htmlFor="option2">
           Minuman
         </label>
         <Button
-          variant="dark"
-          className="btn-outline-danger fs-6"
+          variant="blue"
+          className="px-5 border border-dark-subtle btn-primary fs-6 rounded-pill p-2"
           onClick={() => {
             const newFiter =
               filterMenu === "Harga Termurah"
@@ -184,7 +189,12 @@ function Menu() {
           {filterMenu}
         </Button>
       </div>
-      <div className="card mx-auto col-md-10">
+      </div>
+
+{/*LIST MENU*/}
+
+      
+      <div className="card mx-auto col-md-10 mt-5 py-3 mb-5">
         <MenuCustomer
           menus={menus}
           inputValues={inputValues}
@@ -193,7 +203,8 @@ function Menu() {
           onKeranjang={handleKeranjangClick}
         />
       </div>
-      <div className="container bg-primary mb-0">
+
+      <div className="bg-info fixed-bottom w-100 rounded-5 rounded-bottom-0">
         {order &&
           pesanan &&
           pesanan.name &&
@@ -209,6 +220,8 @@ function Menu() {
             />
           )}
       </div>
+      </div>
+    </div>
     </>
   );
 }

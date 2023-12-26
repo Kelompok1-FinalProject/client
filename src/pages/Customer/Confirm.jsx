@@ -26,22 +26,40 @@ function Confirm() {
 
   return (
     <>
-      <div className="p-5 mx-5">
-        <div className="container bg-danger p-3 rounded ">
+      <div className="bgAll p-5">
+        <div className="container vh-75 bg-body-tertiary p-3 rounded border">
           {pesanan.statusBayar === "Belum Bayar" ? (
             <>
-              <h1 className="fw-bold">Lakukan Pembayaran</h1>
-              <h4>Menunggu Pembayaran ...</h4>
-              <h4>Silahkan Menuju Kasir Untuk Membayar</h4>
-              <Button onClick={handleConfirmClick} disabled>
+              <div className="w-75 m-auto">
+                <img
+                  src="https://i.imgur.com/UGQiraA.png"
+                  alt="Logo"
+                  className="w-25 p-1 border-dark border-2 rounded rounded-circle img-fluid hover-zoom"
+                />
+              </div>
+              <h1 className="fw-bold p-3 text-dark">Lakukan Pembayaran</h1>
+              <h4 className="p-5 text-dark">Menunggu Pembayaran ...</h4>
+              <h4 className="p-4 text-dark">
+                Silahkan Menuju Kasir Untuk Membayar
+              </h4>
+              <Button className="btn-danger fw-bold p-2" onClick={handleConfirmClick} disabled>
                 Selesai
               </Button>
             </>
           ) : (
             <>
-              <h1 className="fw-bold">Pembayaran Berhasil!</h1>
-              <h4>Pesanan Sedang Diproses ...</h4>
-              <h4>Silahkan Menunggu Pesanan Anda Di Tempat</h4>
+              <div className="w-75 m-auto">
+                <img
+                  src="https://i.imgur.com/UGQiraA.png"
+                  alt="Logo"
+                  className="w-25 p-1 border border-dark border-2 rounded rounded-circle img-fluid hover-zoom"
+                />
+              </div>
+              <h1 className="fw-bold p-3 text-dark">Pembayaran Berhasil!</h1>
+              <h4 className="p-5 text-dark">Pesanan Sedang Diproses ...</h4>
+              <h4 className="p-4 text-dark">
+                Silahkan Menunggu Pesanan Anda Di Tempat
+              </h4>
               <Button onClick={handleConfirmClick}>Selesai</Button>
             </>
           )}
