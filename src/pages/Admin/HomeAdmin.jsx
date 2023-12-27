@@ -6,6 +6,7 @@ import menuIcon from "../../icon/menu.png";
 import pembukuanIcon from "../../icon/report.png";
 import customerIcon from "../../icon/customer.png";
 import logout from "../../icon/logout.png";
+import "../../App.css";
 
 function HomeAdmin() {
   const navigate = useNavigate();
@@ -68,6 +69,8 @@ function HomeAdmin() {
 
   return (
     <>
+    <div className="bgSecond p-5">
+      
       <Button
         variant="danger"
         className={`btn btn-outline-danger rounded rounded-pill py-0 px-1 fs-5 m-3 position-fixed top-0 end-0 ${
@@ -147,6 +150,7 @@ function HomeAdmin() {
             <img src={customerIcon} width={80} alt="menu" />
           )}
         </Button>
+      </div>
       </div>
     </>
   );

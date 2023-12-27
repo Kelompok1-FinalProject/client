@@ -42,7 +42,7 @@ function Pembukuan() {
     <>
       <img
         src={isHoveredBack ? backHover : back}
-        className={`border border-primary rounded rounded-circle m-3 fixed-top ${
+        className={`border border-primary rounded rounded-circle m-3 fixed-top bg-secondary ${
           isHoveredBack === false ? "hoveredBack" : ""
         }`}
         alt="Profile"
@@ -52,10 +52,10 @@ function Pembukuan() {
         onMouseLeave={handleMouseLeaveBack}
         onClick={handleBackClick}
       />
-      <h1>Ringkasan Pembukuan Customer</h1>
-      <div className="d-flex justify-content-between">
-        <div className="d-flex justify-content-between">
-          <h3>Urutkan Berdasarkan : </h3>
+      <h1 className="text-dark fw-bold">Ringkasan Pembukuan Customer</h1>
+      <div className="d-flex justify-content-between text-dark">
+        <div className="d-flex justify-content-between mx-2">
+          <h3 className="px-2">Urutkan Berdasarkan : </h3>
           <Form.Group className="col-s-2 text-start">
             <Form.Select
               onChange={(event) => {
@@ -84,9 +84,9 @@ function Pembukuan() {
         </div>
       </div>
       <div>
-        <table className="table">
+        <table className="table table-striped">
           <thead>
-            <tr>
+            <tr className="table-primary fw-bold">
               <td>No</td>
               <td>Nama Pembeli</td>
               <td>Pemasukan</td>

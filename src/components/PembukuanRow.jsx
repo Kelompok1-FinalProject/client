@@ -46,8 +46,7 @@ function PembukuanRow({
         <td>{formattedCreatedAt}</td>
         <td>
           <Button
-            variant="dark"
-            className="btn-outline-danger fs-4"
+            className="btn-info fs-4 fw-bold border"
             onClick={() => setModalIsOpen(true)}
           >
             Detail Pesanan
@@ -67,12 +66,11 @@ function PembukuanRow({
               },
             }}
           >
-            <h1>Detail Pesanan</h1>
+            <h1 className="fw-bold">Detail Pesanan</h1>
             <LaporanList laporan={laporans} />
             <div className="d-flex justify-content-end">
               <Button
-                variant="dark"
-                className="btn-outline-danger fs-4"
+                className="btn-secondary fs-4"
                 onClick={() => setModalIsOpen(false)}
               >
                 Kembali

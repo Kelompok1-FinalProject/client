@@ -3,6 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { useNavigate, Link } from "react-router-dom";
 import { login, putAccessToken, putRole } from "../../utils/server";
 import Swal from "sweetalert2";
+import "../../App.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -32,8 +33,8 @@ function Login() {
   }
 
   return (
-    <div className="py-4">
-      <div className="p-3 container shadow rounded w-75">
+    <div className="bg-first p-5">
+      <div className="p-3 container shadow rounded card my-auto mx-auto">
         <div className="w-75 m-auto">
           <img
             src="https://i.imgur.com/UGQiraA.png"
@@ -42,7 +43,7 @@ function Login() {
           />
         </div>
         <Form
-          className="row px-5 g-3 mx-5 text-light col-md-6 mx-auto"
+          className="row px-5 g-3 mx-5 text-light col-md-6 mx-auto text-dark"
           onSubmit={(event) => {
             onSubmitHandler(event);
           }}
@@ -103,7 +104,7 @@ function Login() {
             </div>
           </Form>
         </Form>
-      </div>
+    </div>
     </div>
   );
 }

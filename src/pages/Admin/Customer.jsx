@@ -95,7 +95,7 @@ function Customer() {
     <>
       <img
         src={isHoveredBack ? backHover : back}
-        className={`border border-primary rounded rounded-circle m-3 fixed-top ${
+        className={`border border-primary rounded rounded-pill m-3 fixed-top bg-secondary ${
           isHoveredBack === false ? "hoveredBack" : ""
         }`}
         alt="Profile"
@@ -105,8 +105,7 @@ function Customer() {
         onMouseLeave={handleMouseLeaveBack}
         onClick={handleBackClick}
       />
-      <h1>Customer List</h1>
-      <div className="d-flex justify-content-around">
+      <div className="d-flex justify-content-around py-3">
         <input
           type="radio"
           className="btn-check"
@@ -117,7 +116,7 @@ function Customer() {
           checked={selectedCustomer === "Created"}
           onChange={handleCustomerChange}
         />
-        <label className="btn btn-primary" htmlFor="option1">
+        <label className="btn btn-primary rounded-pill px-3 fw-bold" htmlFor="option1">
           Status Pembayaran
         </label>
 
@@ -131,7 +130,7 @@ function Customer() {
           checked={selectedCustomer === "In Progress"}
           onChange={handleCustomerChange}
         />
-        <label className="btn btn-primary" htmlFor="option2">
+        <label className="btn btn-primary rounded-pill px-5 fw-bold" htmlFor="option2">
           Daftar Tunggu
         </label>
 
@@ -145,14 +144,14 @@ function Customer() {
           checked={selectedCustomer === "Done"}
           onChange={handleCustomerChange}
         />
-        <label className="btn btn-primary" htmlFor="option3">
+        <label className="btn btn-primary rounded-pill px-5 fw-bold" htmlFor="option3">
           Status Pesanan
         </label>
       </div>
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between text-dark mx-3">
         <div className="d-flex justify-content-between">
           <h3>Urutkan Berdasarkan : </h3>
-          <Form.Group className="col-s-2 text-start">
+          <Form.Group className="col-s-2 text-start mx-2">
             <Form.Select
               onChange={(event) => {
                 const value = event.target.value;
@@ -181,9 +180,9 @@ function Customer() {
       </div>
       <div>
         {selectedCustomer === "Created" ? (
-          <table className="table">
+          <table className="table table-striped">
             <thead>
-              <tr>
+              <tr className="fw-bold table-primary">
                 <td>No</td>
                 <td>Nama Pembeli</td>
                 <td>No Meja</td>
@@ -202,9 +201,9 @@ function Customer() {
             </tbody>
           </table>
         ) : (
-          <table className="table">
+          <table className="table table-striped">
             <thead>
-              <tr>
+              <tr className="table-primary">
                 <td>No</td>
                 <td>Nama Pembeli</td>
                 <td>No Meja</td>
