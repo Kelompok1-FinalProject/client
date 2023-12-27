@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import Modal from "react-modal";
 import { BayarButton } from "./BayarButton";
 import info from "../icon/info.png";
+import CustomerRow from "./CustomerRow";
 
 function CustomerBayar({
   key,
@@ -18,11 +19,19 @@ function CustomerBayar({
   statusPesanan,
   totalLaba,
   totalPembayaran,
+  transaksi,
   createdAt,
   onUpdateBayar,
 }) {
+  const [transaksis, setTransaksis] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const formattedCreatedAt = moment(createdAt).format("DD MMM YYYY HH:mm");
+  const formattedTotalPembayaran = totalPembayaran.toLocaleString();
+
+  useEffect(() => {
+    setTransaksis(transaksi);
+  }, []);
+
   return (
     <tr>
       <td>{no}</td>
@@ -52,11 +61,11 @@ function CustomerBayar({
           }}
         >
           <h1>Detail Pesanan</h1>
-          {/* <LaporanList laporan={laporans} /> */}
+          <CustomerRow transaksi={transaksis} bayar={totalPembayaran} />
           <div className="d-flex justify-content-end">
             <Button
-              variant="dark"
-              className="btn-outline-danger fs-4"
+              variant="danger"
+              className="fs-4 rounded rounded-pill shadow"
               onClick={() => setModalIsOpen(false)}
             >
               Kembali
@@ -65,7 +74,7 @@ function CustomerBayar({
         </Modal>
       </td>
       <td>{noMeja}</td>
-      <td>{totalPembayaran}</td>
+      <td>Rp. {formattedTotalPembayaran}</td>
       <td>{payment}</td>
       <td>
         <td>{formattedCreatedAt}</td>

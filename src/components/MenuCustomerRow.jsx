@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import { Button, Form } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { addTransaksi } from "../utils/server";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../src/fontAwesome";
 
 function MenuRow({
   id,
@@ -19,8 +21,6 @@ function MenuRow({
   const [enlargeImage, setEnlargeImage] = useState(false);
   const [inputValue, setInputValue] = useState(0);
 
-  const formattedHarga = harga.toLocaleString();
-
   const handleNameClick = () => {
     setShowChildren(!showChildren);
     setEnlargeImage(!enlargeImage);
@@ -36,7 +36,7 @@ function MenuRow({
     }
   };
   const handleKeranjangClick = async () => {
-    if (!inputValue == 0) {
+    if (inputValue !== 0) {
       const menuId = id;
       const jumlahOrder = inputValue;
       const response = await addTransaksi({ menuId, jumlahOrder });
@@ -52,6 +52,7 @@ function MenuRow({
       }
     }
   };
+  const formattedHarga = harga.toLocaleString();
   return (
     <>
       <div className="d-flex justify-content-center text-start my-2 mx-5 text-light rounded">
@@ -61,10 +62,10 @@ function MenuRow({
             alt="Menu"
             width={enlargeImage ? 180 : 90}
             height={enlargeImage ? 180 : 90}
-            className="rounded shadow"
+            className="rounded shadow mx-3"
           />
         </div>
-        <div class="card p-2 bg-info bg-gradient col-md-11">
+        <div className="card p-2 bg-warning-subtle bg-gradient col-md-11">
           <div
             className="card-header d-flex justify-content-between pointer"
             onClick={handleNameClick}
@@ -96,8 +97,15 @@ function MenuRow({
               </Button>
             )}
             {showChildren && (
-              <Button className="col-md-1 mx-1" onClick={handleKeranjangClick}>
-                *
+              <Button
+                className="col-md-1 mx-1 btn-danger"
+                onClick={handleKeranjangClick}
+              >
+                <FontAwesomeIcon
+                  icon="fa-shopping-basket"
+                  size="1x"
+                  color="white"
+                />
               </Button>
             )}
           </Form>

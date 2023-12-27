@@ -9,8 +9,8 @@ function PesanButton({ statusPesanan, id, onUpdatePesan }) {
   return (
     <>
       <Button
-        variant="primary"
-        className="fs-6"
+        variant="warning"
+        className="fs-6 btn-outline-light border-warning"
         onClick={() => {
           Swal.fire({
             title: "Konfirmasi Status Pesanan?",

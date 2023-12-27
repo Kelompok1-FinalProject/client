@@ -1,4 +1,12 @@
 import { library } from "@fortawesome/fontawesome-svg-core";
-import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUtensils,
+  faShoppingBasket,
+  faTrashCan,
+  faPenToSquare,
+} from "@fortawesome/free-solid-svg-icons";
 
-library.add(faCamera);
+library.add(faUtensils);
+library.add(faShoppingBasket);
+library.add(faTrashCan);
+library.add(faPenToSquare);

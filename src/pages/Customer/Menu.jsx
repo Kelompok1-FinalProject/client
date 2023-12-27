@@ -9,8 +9,12 @@ import {
   updateTransaksi,
 } from "../../utils/server";
 import Transaksi from "../../components/Transaksi";
+import "../../App.css";
+import { ButtonKembali } from "../../components/ButtonKembali";
+import { useNavigate } from "react-router-dom";
 
 function Menu() {
+  const navigate = useNavigate();
   const [menus, setMenus] = useState([]);
   const [pesanan, setPesanan] = useState({});
   const [filterMenu, setFilterMenu] = useState("Harga Termurah");
@@ -103,7 +107,7 @@ function Menu() {
   };
 
   useEffect(() => {
-    getMenuKategori(selectedCategory, "public")
+    getMenuKategori(selectedCategory)
       .then((result) => {
         const data = result.data;
         setMenus(data);
@@ -139,75 +143,96 @@ function Menu() {
       });
   }, []);
 
+  const handleBackClick = () => {
+    navigate("/home");
+  };
+
   return (
     <>
-      <h1>Pilihan Menu</h1>
-      <div className="d-flex justify-content-around mb-3">
-        <input
-          type="radio"
-          className="btn-check"
-          name="options"
-          id="option1"
-          autoComplete="off"
-          value="makanan"
-          checked={selectedCategory === "makanan"}
-          onChange={handleCategoryChange}
-        />
-        <label className="btn btn-primary" htmlFor="option1">
-          Makanan
-        </label>
+      <div className="bgAll pt-5 pb-5">
+        <ButtonKembali handleBackClick={handleBackClick} />
+        <div className="mt-3 pt-2">
+          <div className="border border-top-0 fixed-top bg-body-tertiary pt-1 rounded-5 rounded-top-0">
+            <h3 className="fw-bold">PILIHAN MENU</h3>
+            <div className="bg-warning-subtle d-flex justify-content-around py-2 rounded-5 rounded-top-0 border border-warning my-auto pt-2">
+              <input
+                type="radio"
+                className="btn-check"
+                name="options"
+                id="option1"
+                autoComplete="off"
+                value="makanan"
+                checked={selectedCategory === "makanan"}
+                onChange={handleCategoryChange}
+              />
+              <label
+                className="px-5 border border-dark-subtle btn btn-warning rounded-pill fw-bold fixed"
+                htmlFor="option1"
+              >
+                Makanan
+              </label>
 
-        <input
-          type="radio"
-          className="btn-check"
-          name="options"
-          id="option2"
-          autoComplete="off"
-          value="minuman"
-          checked={selectedCategory === "minuman"}
-          onChange={handleCategoryChange}
-        />
-        <label className="btn btn-primary" htmlFor="option2">
-          Minuman
-        </label>
-        <Button
-          variant="dark"
-          className="btn-outline-danger fs-6"
-          onClick={() => {
-            const newFiter =
-              filterMenu === "Harga Termurah"
-                ? "Harga Termahal"
-                : "Harga Termurah";
-            setFilterMenu(newFiter);
-          }}
-        >
-          {filterMenu}
-        </Button>
-      </div>
-      <div className="card mx-auto col-md-10">
-        <MenuCustomer
-          menus={menus}
-          inputValues={inputValues}
-          onPlus={handlePlusClick}
-          onMin={handleMinClick}
-          onKeranjang={handleKeranjangClick}
-        />
-      </div>
-      <div className="container bg-primary mb-0">
-        {order &&
-          pesanan &&
-          pesanan.name &&
-          pesanan.Transaksis &&
-          pesanan.Transaksis.length > 0 && (
-            <Transaksi
-              jumlahPesanan={pesanan.Transaksis.length}
-              bayar={pesanan.totalPembayaran}
-              noMeja={pesanan.noMeja}
-              order={order}
-              onDelete={handleDeleteChange}
-              onUpdate={handleUpdateChange}
+              <input
+                type="radio"
+                className="btn-check"
+                name="options"
+                id="option2"
+                autoComplete="off"
+                value="minuman"
+                checked={selectedCategory === "minuman"}
+                onChange={handleCategoryChange}
+              />
+              <label
+                className="px-5 border border-dark-subtle btn btn-warning rounded-pill fw-bold"
+                htmlFor="option2"
+              >
+                Minuman
+              </label>
+              <Button
+                variant="blue"
+                className="px-5 border border-dark-subtle btn-primary fs-6 rounded-pill p-2"
+                onClick={() => {
+                  const newFiter =
+                    filterMenu === "Harga Termurah"
+                      ? "Harga Termahal"
+                      : "Harga Termurah";
+                  setFilterMenu(newFiter);
+                }}
+              >
+                {filterMenu}
+              </Button>
+            </div>
+          </div>
+
+          {/*LIST MENU*/}
+
+          <div className="card mx-auto col-md-10 mt-5 py-3 mb-5">
+            <MenuCustomer
+              menus={menus}
+              inputValues={inputValues}
+              onPlus={handlePlusClick}
+              onMin={handleMinClick}
+              onKeranjang={handleKeranjangClick}
             />
-          )}
+          </div>
+
+          <div className="bg-info fixed-bottom w-100 rounded-5 rounded-bottom-0">
+            {order &&
+              pesanan &&
+              pesanan.name &&
+              pesanan.Transaksis &&
+              pesanan.Transaksis.length > 0 && (
+                <Transaksi
+                  jumlahPesanan={pesanan.Transaksis.length}
+                  bayar={pesanan.totalPembayaran}
+                  noMeja={pesanan.noMeja}
+                  order={order}
+                  onDelete={handleDeleteChange}
+                  onUpdate={handleUpdateChange}
+                />
+              )}
+          </div>
+        </div>
       </div>
     </>
   );

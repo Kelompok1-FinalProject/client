@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import Modal from "react-modal";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../src/fontAwesome";
 
 function TransaksiRow({
   key,
@@ -78,20 +80,22 @@ function TransaksiRow({
           <th scope="col">
             <div className="d-flex justify-content-end">
               <Button
-                variant="dark"
-                className="btn-outline-danger fs-4"
+                className="btn-info fs-4 mx-2"
                 onClick={() => setModalIsOpen(true)}
               >
-                Edit
+                <FontAwesomeIcon
+                  icon="fa-pen-to-square"
+                  size="1x"
+                  color="white"
+                />
               </Button>
               <Button
-                variant="dark"
-                className="btn-outline-danger fs-4"
+                className="btn-danger fs-4"
                 onClick={() => {
                   onDeleteHandler();
                 }}
               >
-                Hapus
+                <FontAwesomeIcon icon="fa-trash-can" size="1x" color="white" />
               </Button>
             </div>
             <Modal
@@ -103,18 +107,18 @@ function TransaksiRow({
                   backgroundColor: "rgba(0, 0, 0, 0.5)",
                 },
                 content: {
-                  width: "30%", // Atur lebar modal
+                  width: "40%", // Atur lebar modal
                   height: "70%", // Atur tinggi modal
                   margin: "auto", // Agar modal berada di tengah layar
                 },
               }}
             >
               <h1 className="mb-5 text-center fw-bold">Edit Pesanan</h1>
-              <div>
+              <div className="d-flex justify-content-between">
                 <h5 className="fw-bold">Nama Menu</h5>
                 <h5 className="text-end">{name}</h5>
               </div>
-              <div className="mb-4">
+              <div className="mb-4 d-flex justify-content-between my-3">
                 <h5 className="fw-bold">Jumlah Order</h5>
                 <div className="d-flex justify-content-end">
                   <Button className="col-md-2 mx-1" onClick={handleMinClick}>
@@ -134,8 +138,7 @@ function TransaksiRow({
               </div>
               <div className="d-flex justify-content-center">
                 <Button
-                  variant="dark"
-                  className="btn-outline-danger fs-6 rounded rounded-pill mb-4"
+                  className="btn-danger fs-6 rounded rounded-pill mb-4"
                   onClick={onUpdateHandler}
                 >
                   Update
@@ -143,8 +146,7 @@ function TransaksiRow({
               </div>
               <div className="d-flex justify-content-end">
                 <Button
-                  variant="dark"
-                  className="btn-outline-danger fs-6 rounded rounded-pill"
+                  className="btn-secondary fs-6 rounded rounded-pill"
                   onClick={() => setModalIsOpen(false)}
                 >
                   Kembali

@@ -22,7 +22,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
 }
 
 .hovered {
@@ -49,6 +49,24 @@
   transform: scale(1.1);
 }
 
+.bg-first {
+  background-image: url(https://i.imgur.com/AzUehWp.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.bgAll {
+  background-image: url(https://i.imgur.com/6i5maED.png);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+.carousel-image {
+  width: 100%; /* Pastikan gambar mengisi lebar carousel item */
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;

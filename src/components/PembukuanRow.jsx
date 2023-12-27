@@ -46,9 +46,13 @@ function PembukuanRow({
         <td>{formattedCreatedAt}</td>
         <td>
           <Button
-            variant="dark"
-            className="btn-outline-danger fs-4"
+            variant="danger"
+            className="btn-outline-light fs-4 rounded-pill py-2 px-3"
             onClick={() => setModalIsOpen(true)}
+            style={{
+              boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+              transition: "transform 0.3s ease-in-out",
+            }}
           >
             Detail Pesanan
           </Button>
@@ -71,9 +75,13 @@ function PembukuanRow({
             <LaporanList laporan={laporans} />
             <div className="d-flex justify-content-end">
               <Button
-                variant="dark"
-                className="btn-outline-danger fs-4"
+                variant="danger"
+                className="btn-outline-light fs-4 rounded-pill py-2 px-3"
                 onClick={() => setModalIsOpen(false)}
+                style={{
+                  boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
+                  transition: "transform 0.3s ease-in-out",
+                }}
               >
                 Kembali
               </Button>

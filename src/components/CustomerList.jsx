@@ -21,6 +21,7 @@ function CustomerList(props) {
               totalLaba={order.totalLaba}
               totalPembayaran={order.totalPembayaran}
               createdAt={order.createdAt}
+              transaksi={order.Transaksis}
               onUpdateBayar={onUpdateBayar}
             />
           ))}
@@ -41,6 +42,7 @@ function CustomerList(props) {
               totalLaba={order.totalLaba}
               totalPembayaran={order.totalPembayaran}
               createdAt={order.createdAt}
+              transaksi={order.Transaksis}
               onUpdatePesan={onUpdatePesan}
             />
           ))}
