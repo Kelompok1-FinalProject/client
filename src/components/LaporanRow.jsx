@@ -9,7 +9,7 @@ function LaporanRow({ key, no, index, id, name, laba, modal, pemasukan }) {
   const formattedLaba = laba.toLocaleString();
   return (
     <>
-      <thead>
+      <thead className="table table-striped">
         <tr>
           <td className="px-3" scope="col">
             {no}

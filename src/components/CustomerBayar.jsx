@@ -3,7 +3,7 @@ import moment from "moment";
 import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import Modal from "react-modal";
-import { BayarButton } from "./BayarButton";
+import { BayarButton } from "../../src/components/BayarButton";
 import info from "../icon/info.png";
 
 function CustomerBayar({
@@ -30,7 +30,7 @@ function CustomerBayar({
         {name}
         <img
           src={info}
-          className="mx-3"
+          className="mx-3 fw-bold"
           alt="Profile"
           width="30"
           height="30"

@@ -10,7 +10,7 @@ function BayarButton({ statusBayar, id, onUpdateBayar }) {
     <>
       <Button
         variant="primary"
-        className="fs-6"
+        className="fs-6 btn-danger fw-bold"
         onClick={() => {
           Swal.fire({
             title: "Konfirmasi Status Pembayaran?",

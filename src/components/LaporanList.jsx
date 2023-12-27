@@ -5,9 +5,9 @@ function LaporanList(props) {
 
   return (
     <>
-      <table className="table text-center">
+      <table className="table text-center table-striped">
         <thead>
-          <tr>
+          <tr className="table-primary fw-bold">
             <th>No</th>
             <th>Name Menu</th>
             <th>Pemasukan</th>
